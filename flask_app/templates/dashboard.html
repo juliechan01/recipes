@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>Your Dashboard</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="profile page">
+    </head>
+
+    <body>
+        <header>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+                #intro {
+                    background-image: url('https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3M5My1hay0yNDkzXzEuanBn.jpg');
+                    max-height: 200vh;
+                }
+
+                @media (min-width: 992px) {
+                    #intro {
+                        margin-top: -58.59px;
+                    }
+                }
+            </style>
+        </header>
+
+        <div id="intro" class="mw-100 bg-image shadow-2-strong">
+            <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,0.8);">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-5 col-md-8">
+                            <div class="head">
+                                <h1 style="color: white;">Welcome, {{user.first_name}}</h1>
+                                <div class="navbar">
+                                    <form action="/recipes/new">
+                                        <button type="submit" class="btn btn-success">+ Create</button>
+                                    </form>
+                                    <form action="/users/logout">
+                                        <button type="submit" class="btn btn-danger">Log Out</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="body">
+                                <p>All posted recipes:</p>
+                                <table class="table" style="color: white; ">
+                                    <thead>
+                                        <th>Name</th>
+                                        <th>Under 30 mins?</th>
+                                        <th>Posted By</th>
+                                        <th>Actions</th>
+                                    </thead>
+                
+                                    {%for r in recipes%}
+                                    <tbody>
+                                        <tr>
+                                            <td>{{r.name}}</td>
+                                            <td>{{r.mins}}</td>
+                                            <td>{{r.creator.first_name}}</td>
+                                            <td>
+                                                <a href="/recipes/{{r.id}}">View Recipe</a>
+                                                {%if r.creator.id == user.id%}
+                                                <a href="/recipes/edit/{{r.id}}">Edit</a>
+                                                <a href="/recipe/delete/{{r.id}}">Delete</a>
+                                                {%endif%}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    {%endfor%}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-light text-lg-start">
+            <div class="py-4 text-center">
+                <a role="button" class="btn btn-dark" target="_blank" href="https://www.github.com/juliechan01/about-me">Connect with me on Github</a>
+                <a role="button" class="btn btn-primary" target="_blank" href="https://www.linkedin.com/in/juliechan2/">Connect with me on LinkedIn</a>
+            </div>
+        </footer>
+    </body>
+</html>

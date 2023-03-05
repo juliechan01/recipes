@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>Edit Recipe</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="edit recipe page">
+    </head>
+
+    <body>
+        <header>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+                #intro {
+                    background-image: url('https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjU2MC13YW4tMDctc3VtbWVyZnJ1aXRfMS5qcGc.jpg');
+                    height: 100vh;
+                }
+
+                @media (min-width: 992px) {
+                    #intro {
+                        margin-top: -58.59px;
+                    }
+                }
+            </style>
+        </header>
+
+        <div id="intro" class="mw-100 bg-image shadow-2-strong">
+            <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,0.8);">
+                <div class="container">
+                    <div class="head">
+                        <h1>Edit Recipe!</h1>
+                        <form action="/users/recipes">
+                            <button type="submit" class="btn btn-info">Back to recipes</button>
+                        </form>
+        
+                        <form action="/users/logout">
+                            <button type="submit" class="btn btn-danger">Log Out</button>
+                        </form>
+                    </div>
+        
+                    <div class="body">
+                        <div class="form-floating mb-3">
+                            <form action="/update/{{recipe.id}}" method="POST">
+                                {% with messages = get_flashed_messages(category_filter=["recipe"])%}
+                                        {% if messages %}
+                                            {% for message in messages %}
+                                                <p>{{message}}</p>
+                                            {%endfor%}
+                                        {%endif%}
+                                    {%endwith%}
+                                <div class="name">
+                                    <label for="floatingInput">Name</label>
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="What's the name of the recipe?" name="name" value="{{recipe.name}}">
+                                </div>
+        
+                                <div class="descrip">
+                                    <label for="floatingInput">Description</label>
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="" name="description" value="{{recipe.description}}">
+                                </div>
+        
+                                <div class="instruct">
+                                    <label for="floatingInput">Instructions</label>
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="How do you make the recipe?" name="instructions" value="{{recipe.instructions}}">
+                                </div>
+        
+                                <div class="mins">
+                                    <label for="floatingInput">Under 30 mins?</label>
+                                    <input type="radio" class="form-check-input" id="inlineRadioDefault" name="mins" value="Yes">
+                                    <label class="form-check-label" for="inlineRadioDefault">Yes</label>
+                                    <input type="radio" class="form-check-input" id="inlineRadioChecked" checked="" name="mins" value="No">
+                                    <label class="form-check-label" for="inlineRadioDefault">No</label>
+                                </div>
+        
+                                <div class="submit">
+                                    <button type="submit" class="btn btn-light">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-light text-lg-start">
+            <div class="py-4 text-center">
+                <a role="button" class="btn btn-dark" target="_blank" href="https://www.github.com/juliechan01/about-me">Connect with me on Github</a>
+                <a role="button" class="btn btn-primary" target="_blank" href="https://www.linkedin.com/in/juliechan2/">Connect with me on LinkedIn</a>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  /* Fixed width container class that will "auto-center" itself */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    font-family: Nunito, sans-serif;
+}
+
+.head0 {
+    text-align: center;
+    padding-top: 95px;
+    color: white;
+}
+
+.body0 {
+    color: black;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-top: 95px;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.head > form {
+    justify-content: space-around;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    color: white;
+}
+
+.register, .login {
+    margin: 15px;
+}
+
+.first, .last, .email, .pw, .cpw {
+    padding: 5px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+}
